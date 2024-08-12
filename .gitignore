@@ -1,9 +1,0 @@
-/flask server/
-.env
-credentials.json
-example.py
-logo.png
-qr_with_logo.png
-token.json
-/.venv/
-/__pycache__/
