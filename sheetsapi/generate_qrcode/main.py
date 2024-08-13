@@ -9,7 +9,7 @@ def generate_qrcode(name):
     """
     qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_L)
     name = name.replace(" ", "-").lower()
-    qr.add_data(f'http://192.168.1.236:5000/{name}')
+    qr.add_data(f'http://192.168.1.236:3001/{name}')
 
     img = qr.make_image(image_factory=StyledPilImage,
                         color_mask=RadialGradiantColorMask(back_color=(

@@ -30,7 +30,7 @@ def home():
     """
     Return the home page
     """
-    return ""
+    return "hi"
 
 
 @app.route('/sasi-team-members')
@@ -49,7 +49,7 @@ def qr_code_redirect(slug):
     Redirect to the sasi team members page if the admin cookie is set
     """
     admin = request.cookies.get("admin")
-    admin = bool(admin)
+
     if admin:
         return handle_slug(slug)
     else:
@@ -57,4 +57,4 @@ def qr_code_redirect(slug):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=3001)

@@ -29,6 +29,7 @@ def add_to_column(name, alpha_index, index):
     Adds the form response to the column in the individual attendance spreadsheet
     """
     range_to_update = f"Individual Attendance!{ALPHABET[alpha_index]}{index}"
+    # pylint: disable=no-member
     sheet = get_build().spreadsheets()
     body = {
         "values": [[name]]
@@ -45,6 +46,7 @@ def get_values():
     """
     Gets the values from the individual attendance spreadsheet
     """
+    # pylint: disable=no-member
     sheet = get_build().spreadsheets()
     result = sheet.values().get(
         spreadsheetId=get_env()[0],
@@ -69,6 +71,7 @@ def create_column(name, alpha_index):
     Creates a new column for the name in the individual attendance spreadsheet
     """
     range_to_update = f"Individual Attendance!{ALPHABET[alpha_index]}{1}"
+    # pylint: disable=no-member
     sheet = get_build().spreadsheets()
     body = {
         "values": [[name]]
