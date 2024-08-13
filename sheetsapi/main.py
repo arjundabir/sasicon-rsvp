@@ -1,11 +1,15 @@
 import os
 from dotenv import load_dotenv
 
+import sys
+
+# Add the parent directory to sys.path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
 # pylint: disable=import-error
 from google_auth.credentials import get_build
 from form_response.form_response import FormResponse, get_form_responses, init_email_sent
-from event_attendance.main import add_to_event
-from individual_attendance.main import add_to_individual_attendance
 
 load_dotenv()
 
@@ -19,8 +23,6 @@ def handle_new_form_response(service, i, row):
     if not form_response.email_sent:
         init_email_sent(service, i)
         form_response.email_sent = False
-    add_to_event(service, event_name="Conference", name=form_response.name())
-    add_to_individual_attendance(service, name=form_response.name())
     print(form_response.to_dict())
 
 

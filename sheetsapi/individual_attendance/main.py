@@ -2,33 +2,34 @@
 handles the individual attendance spreadsheet
 """
 # pylint: disable=import-error
-from get_env import get_env
+from sheetsapi.google_auth.credentials import get_build
+from sheetsapi.get_env import get_env
 
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def add_to_individual_attendance(service, name):
+def add_to_individual_attendance(name):
     """
     Adds the form response to the individual attendance spreadsheet
     """
-    values = get_values(service)
+    values = get_values()
     alpha_index, index = find_column_index(values, name)
 
     if alpha_index == -1:
-        create_column(service, name, len(values))
-        values = get_values(service)
+        create_column(name, len(values))
+        values = get_values()
         alpha_index, index = find_column_index(values, name)
 
     else:
-        add_to_column(service, name, alpha_index, index)
+        add_to_column(name, alpha_index, index)
 
 
-def add_to_column(service, name, alpha_index, index):
+def add_to_column(name, alpha_index, index):
     """
     Adds the form response to the column in the individual attendance spreadsheet
     """
     range_to_update = f"Individual Attendance!{ALPHABET[alpha_index]}{index}"
-    sheet = service.spreadsheets()
+    sheet = get_build().spreadsheets()
     body = {
         "values": [[name]]
     }
@@ -40,11 +41,11 @@ def add_to_column(service, name, alpha_index, index):
     ).execute()
 
 
-def get_values(service):
+def get_values():
     """
     Gets the values from the individual attendance spreadsheet
     """
-    sheet = service.spreadsheets()
+    sheet = get_build().spreadsheets()
     result = sheet.values().get(
         spreadsheetId=get_env()[0],
         range=get_env()[3],
@@ -63,12 +64,12 @@ def find_column_index(values, name):
     return -1, -1
 
 
-def create_column(service, name, alpha_index):
+def create_column(name, alpha_index):
     """
     Creates a new column for the name in the individual attendance spreadsheet
     """
     range_to_update = f"Individual Attendance!{ALPHABET[alpha_index]}{1}"
-    sheet = service.spreadsheets()
+    sheet = get_build().spreadsheets()
     body = {
         "values": [[name]]
     }

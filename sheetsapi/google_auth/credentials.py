@@ -12,10 +12,12 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 def get_credentials():
     """gets credentials from token.json"""
 
+    path_to_token = os.path.join(os.path.dirname(__file__), "token.json")
+
     creds = None
-    if os.path.exists("./google_auth/token.json"):
+    if os.path.exists(path_to_token):
         creds = Credentials.from_authorized_user_file(
-            "./google_auth/token.json", SCOPES)
+            path_to_token, SCOPES)
     return creds
 
 
