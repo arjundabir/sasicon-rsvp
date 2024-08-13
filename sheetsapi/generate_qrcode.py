@@ -8,7 +8,7 @@ from qrcode.image.styles.colormasks import RadialGradiantColorMask
 def generate_qrcode():
     qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_L)
     # change this to the url of the flask server
-    qr.add_data('https://www.google.com')
+    qr.add_data('http://192.168.1.236:5000')
 
     img_3 = qr.make_image(image_factory=StyledPilImage,
                           color_mask=RadialGradiantColorMask(back_color=(
