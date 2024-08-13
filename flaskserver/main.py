@@ -50,7 +50,7 @@ def qr_code_redirect(slug):
     """
     admin = request.cookies.get("admin")
 
-    if admin:
+    if admin == "True":
         return handle_slug(slug)
     else:
         return redirect("https://wp.ovptl.uci.edu/sasi/")
