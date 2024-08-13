@@ -1,4 +1,5 @@
 """handles form responses sheet"""
+# pylint: disable=import-error
 from get_env import get_env
 
 
@@ -14,7 +15,8 @@ class FormResponse:
         self.graduation_year = row[4]
         self.majors = row[5]
         self.email = row[6]
-        self.email_sent = row[7] if len(row) > 7 else ""
+        self.food_preferences = row[7]
+        self.email_sent = row[8] if len(row) > 8 else ""
 
     def to_dict(self):
         """returns a dictionary representation of the form response"""
@@ -22,6 +24,7 @@ class FormResponse:
             "timestamp": self.timestamp,
             "firstname": self.firstname,
             "lastname": self.lastname,
+            "name": self.name(),
             "school_email": self.school_email,
             "graduation_year": self.graduation_year,
             "majors": self.majors,
@@ -49,15 +52,15 @@ def get_form_responses(service):
     return result.get("values", [])
 
 
-# def init_email_sent(service, row_index, row):
-#     """initializes the email sent column to false"""
-#     range_to_update = f"Form Responses 1!H{row_index + 1}"
-#     body = {
-#         "values": [[False]]
-#     }
-#     service.spreadsheets().values().update(
-#         spreadsheetId=get_env()[0],
-#         range=range_to_update,
-#         valueInputOption="RAW",
-#         body=body
-#     ).execute()
+def init_email_sent(service, row_index, row):
+    """initializes the email sent column to false"""
+    range_to_update = f"Form Responses 1!H{row_index + 1}"
+    body = {
+        "values": [[False]]
+    }
+    service.spreadsheets().values().update(
+        spreadsheetId=get_env()[0],
+        range=range_to_update,
+        valueInputOption="RAW",
+        body=body
+    ).execute()
