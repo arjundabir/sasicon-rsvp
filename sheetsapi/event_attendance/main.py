@@ -31,7 +31,7 @@ def create_event_column(event_name):
     Creates a new column for the event in the spreadsheet
     """
     # pylint: disable=no-member
-    sheet = get_values().spreadsheets()
+    sheet = get_build().spreadsheets()
     body = {
         "values": [[event_name]]
     }
