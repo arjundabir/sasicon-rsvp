@@ -52,9 +52,11 @@ def get_form_responses(service):
     return result.get("values", [])
 
 
-def init_email_sent(service, row_index, row):
-    """initializes the email sent column to false"""
-    range_to_update = f"Form Responses 1!H{row_index + 1}"
+def init_email_sent(service, row_index):
+    """
+    initializes the email sent column to false
+    """
+    range_to_update = f"Form Responses 1!I{row_index + 1}"
     body = {
         "values": [[False]]
     }
