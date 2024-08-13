@@ -13,8 +13,9 @@ def get_credentials():
     """gets credentials from token.json"""
 
     creds = None
-    if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+    if os.path.exists("./google_auth/token.json"):
+        creds = Credentials.from_authorized_user_file(
+            "./google_auth/token.json", SCOPES)
     return creds
 
 

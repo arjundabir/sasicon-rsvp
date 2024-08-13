@@ -39,6 +39,3 @@ def update_attendance(service, row):
         valueInputOption="RAW",
         body=body,
     ).execute()
-
-
-def add_attendance():

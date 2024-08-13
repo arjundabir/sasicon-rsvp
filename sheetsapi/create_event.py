@@ -1,4 +1,4 @@
-from credentials import get_build
+from sheetsapi.google_auth.credentials import get_build
 from attendance import get_attendance, update_attendance
 service = get_build()
 

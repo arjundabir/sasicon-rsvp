@@ -1,6 +1,4 @@
 """handles form responses sheet"""
-
-
 from get_env import get_env
 
 
@@ -51,15 +49,15 @@ def get_form_responses(service):
     return result.get("values", [])
 
 
-def init_email_sent(service, row_index, row):
-    """initializes the email sent column to false"""
-    range_to_update = f"Form Responses 1!H{row_index + 1}"
-    body = {
-        "values": [[False]]
-    }
-    service.spreadsheets().values().update(
-        spreadsheetId=get_env()[0],
-        range=range_to_update,
-        valueInputOption="RAW",
-        body=body
-    ).execute()
+# def init_email_sent(service, row_index, row):
+#     """initializes the email sent column to false"""
+#     range_to_update = f"Form Responses 1!H{row_index + 1}"
+#     body = {
+#         "values": [[False]]
+#     }
+#     service.spreadsheets().values().update(
+#         spreadsheetId=get_env()[0],
+#         range=range_to_update,
+#         valueInputOption="RAW",
+#         body=body
+#     ).execute()
