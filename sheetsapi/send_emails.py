@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     for i, row in enumerate(form_response_values[1:], start=1):
         form_response = FormResponse(row)
-        if not form_response.email_sent:
+        if form_response.email_sent == 'FALSE' or form_response.email_sent is False:
             qr_code_file = generate_qrcode(form_response.name())
             send_email(form_response, qr_code_file)
             update_email_sent(service, i)
