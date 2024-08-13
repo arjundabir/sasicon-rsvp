@@ -16,7 +16,7 @@ class FormResponse:
         self.majors = row[5]
         self.email = row[6]
         self.food_preferences = row[7]
-        self.email_sent = row[8] if len(row) > 8 else ""
+        self.email_sent = row[8] if len(row) > 8 else False
 
     def to_dict(self):
         """returns a dictionary representation of the form response"""

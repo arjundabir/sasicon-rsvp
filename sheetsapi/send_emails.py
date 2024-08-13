@@ -10,7 +10,7 @@ SPREADSHEET_ID = get_env()[0]
 FORM_RESPONSES_RANGE = get_env()[1]
 
 
-def update_email_sent(service, row_index):
+def update_email_sent(ss_service, row_index):
     """
     updates the email sent column to true
     """
@@ -18,7 +18,7 @@ def update_email_sent(service, row_index):
     body = {
         "values": [[True]]
     }
-    service.spreadsheets().values().update(
+    ss_service.spreadsheets().values().update(
         spreadsheetId=SPREADSHEET_ID,
         range=range_to_update,
         valueInputOption="RAW",
@@ -39,3 +39,5 @@ if __name__ == "__main__":
             qr_code_file = generate_qrcode(form_response.name())
             send_email(form_response, qr_code_file)
             update_email_sent(service, i)
+        else:
+            print(f"Email already sent to {form_response.name()}")

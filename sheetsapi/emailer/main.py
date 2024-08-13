@@ -29,10 +29,5 @@ Best,
 SASI
 """
     attachments = qr_code_file
-
-    if not form_response.email_sent:
-        yag.send(to=to, subject=SUBJECT, contents=body,
-                 attachments=attachments)
-        print('Email sent successfully!')
-    else:
-        print('Email already sent!')
+    yag.send(to=to, subject=SUBJECT, contents=body, attachments=attachments)
+    print('Email sent successfully!')
